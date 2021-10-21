@@ -17,6 +17,8 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
 # Setting working directory
 WORKDIR /usr/src/app
 
+RUN git clone -b Camplayer_1.0 https://github.com/raspicamplayer/camplayer.git && sh ./camplayer/install.sh
+
 COPY start.sh start.sh
 
 # Adding things to autostart will cause them to be launchd automatically on starup
