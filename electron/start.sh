@@ -31,7 +31,7 @@ export DISPLAY=:0
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 echo "Starting X in 2 seconds"
 sleep 2
-startx -- -nocursor  &
+startx camplayer -- -nocursor  &
 P1=$!
 x11vnc -find -quiet -forever -localhost -rfbauth ~/.x11vnc/passwd &
 P2=$!
