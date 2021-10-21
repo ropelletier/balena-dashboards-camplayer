@@ -5,7 +5,7 @@ RUN install_packages xserver-xorg-core \
     xinit lxsession desktop-file-utils \
     raspberrypi-ui-mods rpd-icons \
     gtk2-engines-clearlookspix \
-    matchbox-keyboard
+    matchbox-keyboard git
 
 # disable lxpolkit popup warning
 RUN mv /usr/bin/lxpolkit /usr/bin/lxpolkit.bak
