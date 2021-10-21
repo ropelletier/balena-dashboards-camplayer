@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p ~/.camplayer
+
 ## Initalizing code
 # Echo the localhost value into the hosts file
 echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
