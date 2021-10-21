@@ -21,6 +21,8 @@ RUN git clone -b Camplayer_1.0 https://github.com/raspicamplayer/camplayer.git &
 
 COPY start.sh start.sh
 
+COPY config.ini config.ini
+
 # Adding things to autostart will cause them to be launchd automatically on starup
 # COPY autostart /etc/xdg/lxsession/LXDE-pi/autostart
 
