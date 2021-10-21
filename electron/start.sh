@@ -7,6 +7,9 @@ echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
 # By default docker gives us 64MB of shared memory size but we need more!
 umount /dev/shm && mount -t tmpfs shm /dev/shm
 
+rm /tmp/.X0-lock &>/dev/null || true
+
+
 # Remove any temp data stored for X Org
 rm /tmp/.X0-lock &>/dev/null || true
 
@@ -22,9 +25,20 @@ fi
 mkdir ~/.x11vnc
 x11vnc -quiet -storepasswd ${NOVNC_PASSWORD} ~/.x11vnc/passwd
 
-## Start X Org running ElectronJS, and run x11vnc to allow connections over public device URL
-startx /usr/src/app/node_modules/electron/dist/electron /usr/src/app --no-sandbox -- -nocursor &
+export DISPLAY=:0
+export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+echo "Starting X in 2 seconds"
+sleep 2
+startx -- -nocursor  &
 P1=$!
 x11vnc -find -quiet -forever -localhost -rfbauth ~/.x11vnc/passwd &
 P2=$!
+
 wait ${P1} ${P2}
+
+while :
+do
+	echo "startx failed, so we will just wait here while you debug!"
+	sleep 30
+done
+
